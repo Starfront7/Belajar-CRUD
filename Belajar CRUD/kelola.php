@@ -19,12 +19,13 @@
     </a>
   </div>
   <div class="container">
-    <div class="mb-3 row">
+    <form action="proses.php" method="POST">
+      <div class="mb-3 row">
     <label for="nisn" class="col-sm-2 col-form-label">
         NISN
     </label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="nisn" placeholders="ex : 12345644">
+      <input type="text"  name="nisn" class="form-control" id="nisn" placeholders="ex : 12345644">
     </div>
   </div>
   </div>
@@ -34,31 +35,44 @@
         Nama
     </label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="nama" placeholders="ex : Alexander">
+      <input type="text" name="nama_siswa" class="form-control" id="nama" placeholders="ex : Alexander">
     </div>
-    <select id="jkel" class="form-select">
+    <select id="jkel" name="jenis_kelamin" class="form-select">
   <option selected>Jenis kelamin siswa</option>
   <option value="1">Laki laki</option>
   <option value="2">Perempuan</option>
   <option value="3">Transgender</option>
 </select>
 <div class="mb-3">
-  <label for="formFile" class="form-label">Foto</label>
-  <input class="form-control" type="file" id="formFile">
+  <label for="foto" class="form-label">Foto</label>
+  <input class="form-control" type="file" name="foto" id="foto">
 </div>
 <div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Alamat</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+  <label for="alamat" class="form-label">Alamat</label>
+  <textarea class="form-control" id="alamat" name="alamat" rows="3"></textarea>
 </div>
 <div class="mb-3 row mt-4">
     <div class="col">
- <button type="button" class="btn btn-primary">
-            Tambahkan
+      <?php
+      if (isset($_GET['ubah'])){
+      ?>
+ <button type="submit" name="aksi" value="edit" class="btn btn-primary">
+            Simpan perubahan
     </button>
+      <?php
+      } else {
+      ?>
+      <button type="submit" value="add" name="aksi" class="btn btn-primary">
+            Tambahkan 
+    </button>
+     <?php
+      } 
+      ?>
      <a href="Beranda.php" type="button" class=" btn btn-danger">
             Batal
      </a>
     </div>
+    </form>
    
 </div>
   </nav>

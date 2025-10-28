@@ -1,3 +1,14 @@
+
+<?php
+include 'koneksi.php';
+
+$query ="SELECT * FROM tb_siswa";
+ $sql = mysqli_query($conn, $query);
+ $no = 0;
+
+ 
+ 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,32 +60,51 @@
       </tr>
     </thead>
     <tbody>
+    <?php
+while($result = mysqli_fetch_assoc( $sql)){
+ 
+    ?>
       <tr>
-        ...
-      </tr>
-      <tr class="align-bottom">
-        ...
-      </tr>
-      <tr>
-        <td><center>1.</center></td>
-        <td>112223344</td>
-        <td>Alexander kurniawan</td>
-        <td>Laki-Laki</td>
+        <td><center>
+          <?php
+          echo ++$no;
+          ?>
+        </center></td>
+        <td><?php
+          echo $result['nisn'];
+          ?></td>
+        <td><?php
+          echo $result['nama_siswa'];
+          ?></td>
+        <td><?php
+          echo $result['jenis_kelamin'];
+          ?></td>
         <td>
-            <img src="https://d1ymz67w5raq8g.cloudfront.net/Pictures/2000xAny/1/9/6/519196_gettyimages1270593514_590256.jpg" alt="Mouse" style="width: 100px;">
+            <img src="/img/<?php
+          echo $result['foto_siswa'];
+          ?>" style="width: 150px;">
         </td>
-        <td>JL. Kusuma Negara</td>
+        <td><?php
+          echo $result['alamat'];
+          ?></td>
         <td>
-            <a href="kelola.php" type="button" class="btn btn-success btn-sm" >
-                <i class="fa fa-pencil" aria-hidden="true"></i>
-                -
-            </a>
-            <a href="kelola.php" type="button" class="btn btn-danger btn-sm">
-            <i class="fa fa-trash"></i>
+            <a href="kelola.php?ubah=<?php
+          echo $result['id_siswa'];
+          ?>" type="button" class="btn btn-success btn-sm" >
+                <i class="fa fa-pencil" ></i>
                 +
+            </a>
+            <a href="proses.php?hapus=<?php
+          echo $result['id_siswa'];
+          ?>" name ="hapus" value ="delete" type="button" class="btn btn-danger btn-sm">
+            <i class="fa fa-trash"></i>
+                -
             </a>
         </td>
     </tr>
+    <?php
+}
+    ?>
     </tbody>
   </table>
 </div>
